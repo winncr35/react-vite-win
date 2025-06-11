@@ -1,21 +1,19 @@
 
 const TodoData = (props) => {
-    // props là một object{}
-    // {
-    //     name :"win",
-    //     age: 25,
-    //     data:{}
-    // }
-    // objec destructoring
-    //  lấy key của object props ra xài
-    const { name, age, data } = props;
+
+    // const { name, age, data } = props;
+    const { todoList } = props;
     console.log("Check props: ", props);
 
     return (
         <div className='todo-data1'>
-            <div>My name is {name}</div>
-            <div> Learning React</div>
-            <div> Watching Youtube</div>
+            {todoList.map((item, index) => {
+                return (<div className="todo-item">
+                    <div>{item.name}</div>
+                    <button className="1">delete</button>
+                </div>)
+            })}
+
             <div>
                 {JSON.stringify(props.todoList)}
             </div>

@@ -8,6 +8,7 @@ const TodoNew = (props) => {
     // addNewTodo("win");
     const handleClick = () => {
         addNewTodo(valueInput)
+        setValueInput(""); // trả ô input rỗng sau khi add
     }
 
     const handleOnChange = (name) => {
@@ -16,7 +17,8 @@ const TodoNew = (props) => {
     return (
         <div className='todo-new'>
             <input type="text"
-                onChange={(event) => { handleOnChange(event.target.value) }}
+                onChange={(event) => { handleOnChange(event.target.value) }} //lấy giá trị trong ô input
+                value={valueInput}
             />
             <button style={{ cursor: "pointer" }}
                 onClick={handleClick}
