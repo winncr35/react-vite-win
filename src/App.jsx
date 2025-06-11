@@ -30,12 +30,34 @@ const App = () => {
         addNewTodo={addNewTodo}
 
       />
-      <TodoData
-        todoList={todoList}
-      />
-      <div className="todo-image">
-        <img src={reactLogo} className='logo' />
-      </div>
+
+      {todoList.length > 0 ?
+        <TodoData
+          todoList={todoList}
+        />
+
+        :     // dùng toán tử 3 ngôi (ternary operator)
+
+        <div className="todo-image">
+          <img src={reactLogo} className='logo' />
+        </div>
+      }
+
+
+      {/* {todoList.length > 0 && // chỉ được sử dụng 1 khối và nên dùng fragment
+        <>
+          <TodoData
+            todoList={todoList}
+          />
+        </>
+      }
+      {todoList.length === 0 &&
+        <div className="todo-image">
+          <img src={reactLogo} className='logo' />
+        </div>
+      } */}
+
+
     </div>
   )
 }
