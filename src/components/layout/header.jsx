@@ -1,11 +1,18 @@
 import './header.css'
-const Header = () => {
-    return (<ul>
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="/users">User</a></li>
-        <li><a href="/products">Product</a></li>
+import { Link, NavLink } from 'react-router-dom';
+// dùng Link thay vì thẻ a để không load lại trang
 
-    </ul>
+// dùng NavLink để active cái phần header
+//Navlink tự động thêm class active ( thư viện react )
+
+const Header = () => {
+    return (
+        <ul>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/users">Users</NavLink></li>
+            <li><NavLink to="/products">Products</NavLink></li>
+
+        </ul>
     );
 }
 
