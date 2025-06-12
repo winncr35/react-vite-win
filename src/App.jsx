@@ -3,6 +3,8 @@ import TodoData from './components/todo/TodoData';
 import TodoNew from './components/todo/TodoNew';
 import reactLogo from './assets/react.svg';
 import { useState } from 'react';
+import Header from './components/layout/header';
+import Footer from './components/layout/footer';
 const App = () => {
 
   const [todoList, setTodoList] = useState([
@@ -20,7 +22,7 @@ const App = () => {
   }
   const deleteTodo = (id) => {
     const newTodo = todoList.filter(item => item.id !== id)
-    setTodoList(newTodo);
+    setTodoList(newTodo)
   }
 
   const randomIntFromInterval = (min, max) => { // min and max included 
@@ -28,28 +30,30 @@ const App = () => {
   }
 
   return (
-    <div className="todo-container">
-      <div className="todo-title">Todo List</div>
-      <TodoNew
-        addNewTodo={addNewTodo}
+    <>
+      <Header />
+      <div className="todo-container">
+        <div className="todo-title">Todo List</div>
+        <TodoNew
+          addNewTodo={addNewTodo}
 
-      />
-
-      {todoList.length > 0 ?
-        <TodoData
-          deleteTodo={deleteTodo}
-          todoList={todoList}
         />
 
-        :     // dùng toán tử 3 ngôi (ternary operator)
+        {todoList.length > 0 ?
+          <TodoData
+            deleteTodo={deleteTodo}
+            todoList={todoList}
+          />
 
-        <div className="todo-image">
-          <img src={reactLogo} className='logo' />
-        </div>
-      }
+          :     // dùng toán tử 3 ngôi (ternary operator)
+
+          <div className="todo-image">
+            <img src={reactLogo} className='logo' />
+          </div>
+        }
 
 
-      {/* {todoList.length > 0 && // chỉ được sử dụng 1 khối và nên dùng fragment
+        {/* {todoList.length > 0 && // chỉ được sử dụng 1 khối và nên dùng fragment
         <>
           <TodoData
             todoList={todoList}
@@ -63,7 +67,9 @@ const App = () => {
       } */}
 
 
-    </div>
+      </div>
+      <Footer />
+    </>
   )
 }
 
