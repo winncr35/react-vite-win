@@ -44,7 +44,7 @@ const UpdateUserModal = (props) => {
         setDataUpdate(null)
 
     }
-    console.log(dataUpdate)
+
     return (
         <Modal
             title="Update a User"

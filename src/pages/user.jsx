@@ -9,6 +9,7 @@ const UsersPage = () => {
     const [dataUsers, setDataUsers] = useState([]);
     useEffect(() => {
         loadUser();
+
     }, []);
     const loadUser = async () => {
 
