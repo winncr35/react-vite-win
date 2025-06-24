@@ -38,7 +38,7 @@ button {
     background: rgb(70, 170, 228);
     color: white;
     border-radius: 5px;
-    width: 75px;
+    width: auto;
     height: 40px;
 }
 
