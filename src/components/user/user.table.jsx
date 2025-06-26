@@ -108,7 +108,6 @@ const UserTable = (props) => {
             }
 
         }
-        console.log(pageSize)
     };
 
     return (

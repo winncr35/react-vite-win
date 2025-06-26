@@ -23,7 +23,6 @@ const ViewUserDetail = (props) => {
         }
 
     }
-    console.log(preview)
 
 
     const handleUpdateUserAvatar = async () => {

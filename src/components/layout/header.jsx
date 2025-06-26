@@ -2,7 +2,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
 import { useState } from 'react';
-import { AuditOutlined, HomeOutlined, UsergroupAddOutlined } from '@ant-design/icons';
+import { AuditOutlined, HomeOutlined, UsergroupAddOutlined, SettingOutlined } from '@ant-design/icons';
 // dùng Link thay vì thẻ a để không load lại trang
 
 // dùng NavLink để active cái phần header
@@ -32,6 +32,16 @@ const Header = () => {
             key: 'books',
             icon: <AuditOutlined />,
 
+        },
+        {
+            key: 'Cài đặt',
+            label: 'Cài đặt',
+            icon: <SettingOutlined />,
+            children: [
+                { key: 'login', label: <Link to={"/login"}>Đăng nhập</Link> },
+                { key: 'logout', label: 'Đăng xuất' },
+
+            ],
         },
 
     ];
