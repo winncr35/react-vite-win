@@ -12,6 +12,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"; // import công cụ
+import { AuthWrapper } from './components/context/auth.context.jsx';
 
 
 
@@ -48,8 +49,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <RouterProvider router={router} />
-
+  <AuthWrapper>
+    <RouterProvider router={router} />
+  </AuthWrapper>
   // {/* <App /> */}
-  // </React.StrictMode>,
+  // {/* // </React.StrictMode>, */ }
 )

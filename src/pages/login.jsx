@@ -1,21 +1,24 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { Button, Divider, Row, Form, Input, Col, Flex, message, notification, Descriptions } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginAPI } from '../services/api.services';
-
+import { AuthContext } from '../components/context/auth.context';
 const LoginPage = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate(); // chuyển trang sang login
 
     const [loading, setLoading] = useState(false);
+    const { setUser } = useContext(AuthContext);
 
     const onFinish = async (values) => {
         setLoading(true)
         const res = await loginAPI(values.email, values.password);
         if (res.data) {
             message.success("Đăng nhập thành công")
+            localStorage.setItem("access_token", res.data.access_token)
+            setUser(res.data.user);
             navigate("/")
 
         }

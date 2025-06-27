@@ -1,8 +1,9 @@
 // import './header.css'
 import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'antd';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { AuditOutlined, HomeOutlined, UsergroupAddOutlined, SettingOutlined } from '@ant-design/icons';
+import { AuthContext } from '../context/auth.context';
 // dùng Link thay vì thẻ a để không load lại trang
 
 // dùng NavLink để active cái phần header
@@ -11,6 +12,8 @@ import { AuditOutlined, HomeOutlined, UsergroupAddOutlined, SettingOutlined } fr
 
 const Header = () => {
     const [current, setCurrent] = useState('');
+    const { user } = useContext(AuthContext);
+    console.log(user)
     const onClick = (e) => {
         console.log('click ', e);
         setCurrent(e.key);
