@@ -13,6 +13,7 @@ import {
   RouterProvider,
 } from "react-router-dom"; // import công cụ
 import { AuthWrapper } from './components/context/auth.context.jsx';
+import PrivateRoute from './pages/private.route.jsx';
 
 
 
@@ -32,7 +33,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <BookPage />
+        element: (<PrivateRoute>
+          <BookPage />
+        </PrivateRoute>)
       }
     ]
   },
@@ -50,8 +53,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <AuthWrapper>
-    <RouterProvider router={router} />
+    <RouterProvider router={router} />    {/* prop.children*/}
   </AuthWrapper>
   // {/* <App /> */}
   // {/* // </React.StrictMode>, */ }
 )
+{/* prop.children*/ }

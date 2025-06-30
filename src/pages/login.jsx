@@ -75,7 +75,13 @@ const LoginPage = () => {
                                 message: 'Password không được để trống'
                             }]}
                         >
-                            <Input.Password />
+                            <Input.Password onKeyDown={(event) => {
+                                if (event.key === "Enter") {
+                                    form.submit()
+
+                                }
+                            }
+                            } />
                         </Form.Item>
 
 

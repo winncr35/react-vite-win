@@ -74,12 +74,23 @@ const loginAPI = (email, password) => {
     const data = {
         username: email,
         password: password,
-        delay: 2000
+        delay: 1000
     }
     return axios.post(URL_BACKEND, data)
 
 }
+const getAccountAPI = () => {
+    const URL_BACKEND = "/api/v1/auth/account";
+    const token = localStorage.getItem("access_token");
+
+    return axios.get(URL_BACKEND, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
 export {
     createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI,
-    handleUploadFile, updateUserAvatar, registerUserAPI, loginAPI
-}
+    handleUploadFile, updateUserAvatar, registerUserAPI, loginAPI, getAccountAPI
+} 
