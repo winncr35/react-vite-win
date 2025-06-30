@@ -1,6 +1,6 @@
 // import './header.css'
-import { Link, NavLink } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Menu, message } from 'antd';
 import { useState, useContext } from 'react';
 import {
     AuditOutlined,
@@ -9,6 +9,7 @@ import {
 
 } from '@ant-design/icons';
 import { AuthContext } from '../context/auth.context';
+import { logoutAPI } from '../../services/api.services';
 // dùng Link thay vì thẻ a để không load lại trang
 
 // dùng NavLink để active cái phần header
@@ -17,11 +18,33 @@ import { AuthContext } from '../context/auth.context';
 
 const Header = () => {
     const [current, setCurrent] = useState('');
-    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { user, setUser } = useContext(AuthContext);
     console.log(user)
     const onClick = (e) => {
         console.log('click ', e);
         setCurrent(e.key);
+    }
+    const handleLogout = async () => {
+        const res = await logoutAPI();
+        if (res.data) {
+            //clear data
+            localStorage.removeItem("access_token");
+            setUser({
+                email: "",
+                phone: "",
+                fullName: "",
+                role: "",
+                avatar: "",
+                id: ""
+
+            })
+            message.success("Logout thành công");
+            //redirect to home
+            navigate("/");
+
+        }
+
     }
     const items = [
         {
@@ -52,7 +75,7 @@ const Header = () => {
             label: `Welcome ${user.fullName}`, //auth context
             icon: <AliwangwangOutlined />,
             children: [
-                { key: 'logout', label: 'Đăng xuất' },
+                { key: 'logout', label: <span onClick={() => handleLogout()}> Đăng xuất</span> },
 
             ],
 
