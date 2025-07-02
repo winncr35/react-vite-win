@@ -55,7 +55,7 @@ const UserForm = (props) => {
                 onOk={() => handleSubmitBtn()}
                 onCancel={() => resetAndCloseModal()}
                 maskClosable={false}
-                okText={"CREATE"}
+                okText={"Create"}
 
             >
 
@@ -76,6 +76,11 @@ const UserForm = (props) => {
                         <span>Password</span>
                         <Input.Password value={password}
                             onChange={(event) => { setPassword(event.target.value) }} />
+                    </div>
+                    <div>
+                        <span>Phone number</span>
+                        <Input value={phone}
+                            onChange={(event) => { setPhone(event.target.value) }} />
                     </div>
                     <div>
                         <span>Phone number</span>

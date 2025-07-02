@@ -19,6 +19,7 @@ const UsersPage = () => {
     const loadUser = async () => {
 
         const res = await fetchAllUserAPI(current, pageSize)
+        // console.log(res)
         if (res.data) {
             setDataUsers(res.data.result);
             setCurrent(res.data.meta.current);

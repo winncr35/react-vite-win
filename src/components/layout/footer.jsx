@@ -3,7 +3,7 @@ const Footer = () => {
 
     return (
         //HTML
-        <div class="footer">
+        <div className="footer">
             <p>React Vite - @winn35</p>
         </div>
 

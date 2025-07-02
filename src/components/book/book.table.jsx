@@ -1,22 +1,19 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Table, Popconfirm, notification } from 'antd';
-import UpdateUserModal from './update.user.modal';
+import { Popconfirm, notification } from 'antd';
 import { useState } from 'react';
-import ViewUserDetail from './view.user.detail';
-import { deleteUserAPI } from '../../services/api.services';
-import Password from 'antd/es/input/Password';
-const UserTable = (props) => {
-    const { dataUsers, loadUser, current, pageSize, total, setCurrent, setPageSize } = props;
-    const [isModalUpdateOpen, setisModalUpdateOpen] = useState(false);
+import { Table } from "antd"
+import { deleteBookAPI } from '../../services/api.services';
+import ViewBookDetail from './book.detail';
+import BookUpdate from './book.update';
+const BookTable = (props) => {
+    const { dataBook, loadBook, current, pageSize, total, setCurrent, setPageSize } = props;
+    const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
     const [dataDetail, setDataDetail] = useState(null)
     const [isDetailOpen, setisDetailOpen] = useState(false)
-
-
-
     const columns = [
         {
-            title: "STT",
+            title: 'STT',
             render: (_, record, index) => {
 
                 return (
@@ -24,10 +21,10 @@ const UserTable = (props) => {
 
                 )
             }
-        },
 
+        },
         {
-            title: 'Id',
+            title: 'ID',
             dataIndex: '_id',
             render: (_, record) => {
 
@@ -40,13 +37,23 @@ const UserTable = (props) => {
             }
         },
         {
-            title: 'Full Name',
-            dataIndex: 'fullName',
+            title: 'Tiêu đề ',
+            dataIndex: 'mainText',
 
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
+            title: 'Giá tiền ',
+            dataIndex: 'price',
+
+        },
+        {
+            title: 'Số lượng ',
+            dataIndex: 'quantity',
+
+        },
+        {
+            title: 'Tác giả ',
+            dataIndex: 'author',
 
         },
         {
@@ -59,7 +66,7 @@ const UserTable = (props) => {
                         <EditOutlined
                             onClick={() => {
                                 setDataUpdate(record)
-                                setisModalUpdateOpen(true);
+                                setIsModalUpdateOpen(true);
 
                             }}
                             style={{ cursor: "pointer", color: "orange" }} />
@@ -78,16 +85,15 @@ const UserTable = (props) => {
                 </>
             ),
         }
-
     ];
     const handleDeteleUser = async (id) => {
-        const res = await deleteUserAPI(id);
+        const res = await deleteBookAPI(id);
         if (res.data) {
             notification.success({
                 message: "Delete user",
                 description: "Xoá user thành công"
             })
-            await loadUser();
+            await loadBook();
         }
         else {
             notification.error({
@@ -112,36 +118,36 @@ const UserTable = (props) => {
 
         }
     };
+    return (<>
+        <Table columns={columns} dataSource={dataBook} rowKey={"_id"}
+            pagination={
+                {
+                    current: current,
+                    pageSize: pageSize,
+                    showSizeChanger: true,
+                    total: total,
+                    showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
+                }}
+            onChange={onChange}
+        />
+        <ViewBookDetail
+            dataDetail={dataDetail}
+            setDataDetail={setDataDetail}
+            isDetailOpen={isDetailOpen}
+            setisDetailOpen={setisDetailOpen}
+            loadBook={loadBook}
 
-    return (
-        <>
-            <Table columns={columns} dataSource={dataUsers} rowKey={"_id"}
-                pagination={
-                    {
-                        current: current,
-                        pageSize: pageSize,
-                        showSizeChanger: true,
-                        total: total,
-                        showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
-                    }}
-                onChange={onChange}
-            />
-            <UpdateUserModal
-                isModalUpdateOpen={isModalUpdateOpen}
-                setisModalUpdateOpen={setisModalUpdateOpen}
-                dataUpdate={dataUpdate}
-                setDataUpdate={setDataUpdate}
-                loadUser={loadUser}
-            />
-            <ViewUserDetail
-                dataDetail={dataDetail}
-                setDataDetail={setDataDetail}
-                isDetailOpen={isDetailOpen}
-                setisDetailOpen={setisDetailOpen}
-                loadUser={loadUser}
+        />
+        <BookUpdate
+            dataUpdate={dataUpdate}
+            setDataUpdate={setDataUpdate}
+            isModalUpdateOpen={isModalUpdateOpen}
+            setIsModalUpdateOpen={setIsModalUpdateOpen}
+            loadBook={loadBook}
+        />
 
-            />
-        </>
-    )
+
+
+    </>)
 }
-export default UserTable;
+export default BookTable

@@ -48,12 +48,12 @@ const Header = () => {
     }
     const items = [
         {
-            label: <Link to={"/"}>Home</Link>,
+            label: <Link to={"/"}>Home</Link>, //ko can dung {}
             key: 'home',
             icon: <HomeOutlined />,
         },
         {
-            label: <Link to={"users"}>Users</Link>,
+            label: <Link to={"/users"}>Users</Link>,
             key: 'users',
             icon: <UsergroupAddOutlined />,
 

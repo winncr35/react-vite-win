@@ -27,6 +27,7 @@ const ViewUserDetail = (props) => {
 
     const handleUpdateUserAvatar = async () => {
         const resUpload = await handleUploadFile(selectedFile, "avatar")
+
         if (resUpload.data) {
             const newAvatar = resUpload.data.fileUploaded;
             //update user
